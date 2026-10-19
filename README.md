@@ -1,10 +1,10 @@
-# Learn PHP
+# Journey to Full-Stack developer career 
 
-My PHP and MySQL learning exercises.
+HTML, CSS, JavaScript, PHP and MySQL learning exercises.
 
 ## Topics
 
-- Creating tables
-- Querying data
-- Fetching rows
-- Database connections with PDO
+- Front-end development
+- Back-end development
+- API
+- SQL
