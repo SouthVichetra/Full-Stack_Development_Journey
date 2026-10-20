@@ -54,9 +54,9 @@
         // alert("hello")
         function validateFields(form)
         {
-            const errors    =   []
-            const elements  =   {}
-            let error       =   ''
+            const errors    =   []  //This creates an empty array.
+            const elements  =   {}  //This creates an empty object.
+            let error       =   ''  //This creates a variable containing an empty string.
 
             for (let element of form.elements)
             {
@@ -119,21 +119,31 @@
 
             return errors
         }
-
+        // function expression
         const validate  =   function(event)
         {
             const errors    =   validateFields(event.target)
+            // The .length property tells us how many items are in the array.
+            // errors.length === 0: no errors.
+            // errors.length === 2: two errors.  
+            // JavaScript treats 0 as falsy and a positive number as truthy
             if (errors.length)
             {
                 const alerts    =   []
-                for (error of errors)
+                for (const error of errors)
                 {
                     alerts.push(error.field + ": " + error.message)
                 }
+                // The .join("\n") method combines the array's strings into one string, 
+                // placing a newline between each message. alert() displays that result in a browser dialog.
                 alert(alerts.join("\n"))
+                // A form's default behavior is to submit its data to the destination specified by its action attribute.
+                // This statement cancels that default behavior for the current submission event.
                 event.preventDefault()
             }
         }
+
+        // Whenever this form triggers a submit event, call the validate function
         document.getElementById('form').addEventListener('submit', validate)
     
         function validateForename(field)
@@ -156,7 +166,7 @@
             {
                 return "Usernames must be at least 5 characters."
             }
-            else if (/[^a-zA-Z0-9_-]/.test(field))
+            else if (/[^a-zA-Z0-9_-]/.test(field)) // The .test() method checks whether a string contains a match for the regex. it's return Boolean
             {
                 return "Only a-z, A-Z, 0-9, - and _ allowed in Usernames."
             }
@@ -200,5 +210,90 @@
             return (field === "") ? "No Email was entered." : ""
         }
     </script>
+
+<!-- 
+    // function expression
+
+            instead of writting this :
+
+                    const validate  =   function(event)
+                    {
+                        const errors    =   validateFields(event.target)
+                        if (errors.length)
+                        {
+                            const alerts    =   []
+                            for (const error of errors)
+                            {
+                                alerts.push(error.field + ": " + error.message)
+                            }
+                            alert(alerts.join("\n"))
+                            event.preventDefault()
+                        }
+                    }
+                    document.getElementById('form').addEventListener('submit', validate)
+
+            we can write this also :
+                    + function declaration:
+                        
+                        function validate(event)
+                        {
+                            const errors = validateFields(event.target)
+
+                            if (errors.length)
+                            {
+                                const alerts    =   []
+                                for (const error of errors)
+                                {
+                                    alerts.push(error.field + ": " + error.message)
+                                }
+                                alert(alerts.join("\n"))
+                                event.preventDefault()
+                            }
+                        }
+
+                        document.getElementById('form').addEventListener('submit', validate)
+
+                    + or this:
+
+                        document.getElementById('form').addEventListener('submit',
+                            function(event) {
+                                const errors = validateFields(event.target)
+
+                                if (errors.length) {
+                                    const alerts    =   []
+                                    for (const error of errors)
+                                    {
+                                        alerts.push(error.field + ": " + error.message)
+                                    }
+                                    alert(alerts.join("\n"))
+                                    event.preventDefault()
+                                }
+                            }
+                        )
+                    
+                    + or arrow function: 
+
+                        const validate = (event) => {
+                            const errors = validateFields(event.target)
+
+                            if (errors.length) {
+                                const alerts    =   []
+                                for (const error of errors)
+                                {
+                                    alerts.push(error.field + ": " + error.message)
+                                }
+                                alert(alerts.join("\n"))
+                                event.preventDefault()
+                            }
+                        }
+
+                        document.getElementById('form').addEventListener('submit', validate)
+
+-->
+
 </body>
+
+
+
+
 </html>
