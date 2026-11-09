@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous Communication Example</title>
+    <style>
+        body { text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Loading a web page into a DIV</h1>
+    <div id="info">This sentence will be replaced</div>
+
+    <script>
+        const data  =   new FormData()
+        data.set("url", "cnet.com")
+        const options = {
+            method: "POST",
+            body: data,
+        }
+        fetch("http://localhost/Full-Stack_Development_Journey/PHP/urlpost.php", options).then(response => response.text())
+        .then(text => document.getElementById("info").innerHTML = text)
+    </script>
+</body>
+</html>
