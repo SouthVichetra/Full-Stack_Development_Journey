@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronouss Communication Example</title>
+    <style>
+        body { text-align: center; }
+    </style>
+</head>
+<body>
+    <h1 id="header">Loading a web page into a DIV</h1>
+    <div id="info">This sentence will be replaced</div>
+    <script>
+        const params = new URLSearchParams({
+            url: "cnet.com",
+            nocache: Math.random() * 1000000
+        })
+        fetch("http://localhost/Full-Stack_Development_Journey/PHP/jsonget.php?" + params)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("header").style.backgroundColor = data.color
+            document.getElementById("info").innerHTML = data.html
+        })
+    </script>
+</body>
+</html>
